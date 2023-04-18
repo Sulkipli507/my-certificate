@@ -9,6 +9,7 @@ class Certificate extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'number_certificate',
         'file',
     ];

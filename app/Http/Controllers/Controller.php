@@ -12,13 +12,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     
-    public function index(Request $request){
-        $certificates = Certificate::paginate(5);
-        $filterKeyword = $request->get('number_certificates');
-        if($filterKeyword){
-            $certificates = Certificate::where("number_certificates", "LIKE",
-           "%$filterKeyword%")->paginate(5);
-        }
-        return view("index", compact("certificates"));
+    public function index(){
+        return view('index');
     }
+    public function validate(Request $request){
+        $numberCertificate = $request->input('number_certificate');
+        $certificates = Certificate::where('number_certificate', $numberCertificate)->get();
+        return view('index', ['certificates' => $certificates]);
+    }
+    
 }

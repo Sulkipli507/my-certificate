@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('certificates', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id');
             $table->string('number_certificate');
             $table->string('file');
-            $table->timestamps();
         });
     }
 

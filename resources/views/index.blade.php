@@ -1,72 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Certificate</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Favicon -->
+    <link href="{{ asset('file/img/ngabuburit.jpeg')}}" rel="icon" />
 
-  <title>My Certificate</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('file/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('file/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{ asset('file/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{ asset('file/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{ asset('file/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-  <link href="{{ asset('file/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <!-- Flaticon Font -->
+    <link href="{{ asset('file/lib/flaticon/font/flaticon.css') }}" rel="stylesheet" />
 
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('file/css/style.css')}}" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('file/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('file/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet" />
 
-</head>
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('file/css/style.css')}}" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
 
-    <section id="certificate" class="contact section-bg">
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-5 mt-5 mt-lg-0">
-            <div class="section-title">
-                <h2>My certificate</h2>
-                <p>Masukkan kode unik untuk mendapatkan sertifikat</p>
-            </div>
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Kode unik" required>
-              </div>
-              <div class="text-center"><button type="submit">Check now</button></div>
-            </form>
-
-          </div>
-
-          <div class="col-lg-7">
-            <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
-                {{-- gambar --}}
-            </div>
-          </div>
-
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">My Certificate</span>
+          </p>
+          <h1 class="mb-4">Sertifikat ngabuburIT</h1>
         </div>
-
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <div class="contact-form">
+              <div id="success"></div>
+              <form action="{{ route('certificate-validate') }} " method="post">
+                @csrf
+                <div class="control-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="number_certificate"
+                    name="number_certificate"
+                    placeholder=" Masukkan Nomor Unik Untuk Melihat Sertifikat"
+                    required
+                  />
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="text-center">
+                  <button
+                    class="btn btn-primary py-2 px-4"
+                    type="submit">
+                    Cek Sertifikat
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-5">
+            @if (isset($certificates))
+              @foreach ($certificates as $item)
+                <img class="certificate" src="{{asset('storage/' . $item->file)}}"/>
+              @endforeach 
+            @endif
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+    <!-- Contact End -->
 
- 
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('file/vendor/aos/aos.js')}}"></script>
-  <script src="{{ asset('file/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ asset('file/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{ asset('file/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{ asset('file/vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{ asset('file/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset('file/js/main.js')}}"></script>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
 
-</body>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('file/lib/easing/easing.min.js')}}"></script>
+    <script src="{{ asset('file/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('file/lib/isotope/isotope.pkgd.min.js')}}"></script>
+    <script src="{{ asset('file/lib/lightbox/js/lightbox.min.js')}}"></script>
 
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('file/mail/jqBootstrapValidation.min.js')}}"></script>
+    <script src="{{ asset('file/mail/contact.js')}}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('file/js/main.js')}}"></script>
+  </body>
 </html>
